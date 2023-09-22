@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const Our_products = () => {
     return (
-        <div className='bg-[#e9edf4] pt-14 pb-9 relative'>
+        <div className='bg-[#f9f9f9] pt-14 pb-9 relative'>
             <div className='px-24 max-xl:px-10'>
                 <div className=''>
                     <div className='relative'>
