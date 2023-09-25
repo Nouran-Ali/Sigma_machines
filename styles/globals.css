@@ -38,3 +38,20 @@ body{
 :where(.css-dev-only-do-not-override-1vr7spz).ant-carousel .slick-dots-bottom{
   bottom: -28px !important;
 }
+
+.Samples .ant-tabs-tab.ant-tabs-tab-active {
+  border-bottom: 2px solid #7153d9 !important;
+  z-index: 2;
+}
+
+.Samples :where(.css-dev-only-do-not-override-byeoj0).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #7153d9 !important;
+}
+
+.Samples .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #7153d9 !important;
+}
+
+.Samples .ant-tabs-tab:hover {
+  color: #7153d9 !important;
+}
