@@ -25,7 +25,7 @@
     position: absolute;
     top: -128px;
     left: -115px;
-    z-index: 2;
+    z-index: 0;
 }
 
 .half_circle {

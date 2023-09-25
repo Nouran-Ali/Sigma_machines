@@ -112,12 +112,13 @@ function Navbar() {
 
     return (
         <>
+
             <AppBar position="sticky" sx={{
                 backgroundColor: scrolling ? '#ffffff' : '#e9edf4',
                 transition: 'background-color 0.3s ease-in-out',
                 boxShadow: scrolling ? '0px 0px 5px rgba(0, 0, 0, 0.2)' : 'none',
                 zIndex: 1,
-            }} className={`navbar pr-3 ${scrolling ? "pt-3 pb-3" : "pt-10 pb-10"}`} dir={language == "ar" ? "rtl" : "ltr"}>
+            }} className={`navbar pr-3 ${scrolling ? "pt-3 pb-3" : "pt-3 pb-3"}`} dir={language == "ar" ? "rtl" : "ltr"}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Typography
@@ -260,6 +261,7 @@ function Navbar() {
                     </Toolbar>
                 </Container>
             </AppBar >
+
         </>
     );
 }
