@@ -40,12 +40,12 @@ const pages = [
     {
         title: 'Products',
         title_ar: 'المنتجات',
-        href: '/our_work',
+        href: '/products',
     },
     {
         title: 'Resources',
         title_ar: 'المصادر',
-        href: '/our_work',
+        href: '/resources',
     },
     {
         title: 'Contact',
