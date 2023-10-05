@@ -1,4 +1,4 @@
-import Product from '@/comps/Product'
+import Product from '@/comps/Product_comp'
 import React from 'react'
 import styles from "../../styles/Product.module.css";
 import { Select, Space } from 'antd';

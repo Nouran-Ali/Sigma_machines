@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from './Product'
+import Product from './Product_comp'
 import styles from "../styles/Product.module.css";
 import Link from 'next/link';
 import { RightOutlined } from "@ant-design/icons";
