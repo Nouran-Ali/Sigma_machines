@@ -13,8 +13,8 @@ const Contact = () => {
         <>
             <div className='bg-[#e9edf4]'>
                 <div className='px-24 max-xl:px-10'>
-                    <div className='grid grid-cols-3 max-xl:grid-cols-1 gap-4 pt-9 pb-12'>
-                        <div className='text-lg mt-9'>
+                    <div className='grid grid-cols-3 max-xl:grid-cols-1 gap-4 pt-9 max-xl:pt-1 pb-12'>
+                        <div className='text-lg mt-9 max-xl:mt-3'>
                             <h3 className='text-[#1d214e] text-2xl font-semibold'>Sigma Machines</h3>
                             <p className='mt-8 text-[#4526b1]'>8814 Bayberry Ave. </p>
                             <p className='text-[#1d214e]'>Jonesborough</p>
@@ -32,11 +32,11 @@ const Contact = () => {
                                 <Image src="/../home/linkedin.png" width={30} height={60} className='mr-5' />
                                 <Image src="/../home/search.png" width={30} height={60} />
                             </div>
-                            <div className={styles.white_circle}></div>
+                            <div className={`${styles.white_circle} mobile_d_none`}></div>
                         </div>
-                        <div className='relative'>
-                            <div className='w-80 ml-auto'>
-                                <div className={styles.half_circle}></div>
+                        <div className='relative max-xl:mt-9'>
+                            <div className='w-80 ml-auto max-xl:mr-auto'>
+                                <div className={`${styles.half_circle} mobile_d_none`}></div>
                                 <div className='bg-white p-8 rounded-3xl ml-auto relative z-0'>
                                     <h3 className='text-[#1d214e] text-2xl font-semibold'>Write <span className='text-[#4526b1]'> A Message</span></h3>
                                     <div className='mt-8 text-lg'>
@@ -67,7 +67,7 @@ const Contact = () => {
                                 autoplay
                             >
                             </dotlottie-player> */}
-                            <Image src="/../contact/1.png" width={550} height={250} className='mt-12 ml-7'/>
+                            <Image src="/../contact/1.png" width={550} height={250} className='mt-12 ml-7 mobile_d_none'/>
                         </div>
                     </div>
                 </div>

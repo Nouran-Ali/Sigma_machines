@@ -10,11 +10,11 @@ import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
 const About = () => {
     return (
         <>
-            <div className={styles.bg_about}>
+            <div className={`${styles.bg_about} mobile_d_none`}>
                 <h1 className='text-white text-5xl text-center pt-24'>About Us</h1>
             </div>
             <div className='px-24 max-xl:px-10'>
-                <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-6 mt-20 mb-20'>
+                <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-6 mt-20 max-xl:mt-10 mb-20'>
                     <div>
                         <p className='text-[#7153d9] text-lg tracking-widest uppercase font-medium'>ABOUT US</p>
                         <p className='text-[#1c1c1c] mt-3 text-4xl'>Leading international developer and manufacturer of laser machines.</p>
@@ -35,7 +35,7 @@ const About = () => {
                         <Link href="/" className={styles.btn_more}>Read More</Link>
                     </div>
 
-                    <div className={styles.bg_about_2}>
+                    <div className={`${styles.bg_about_2} mobile_d_none`}>
                         <Image src="/../about/1.jfif" width={500} height={300} className='rounded-lg  mt-20' />
                     </div>
                 </div>

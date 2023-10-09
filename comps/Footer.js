@@ -14,7 +14,7 @@ const Footer = () => {
                     </div>
                     <p className='mt-6'>We are the best world Information Technology Company. Providing the highest quality in hardware, Software & Network solutions.</p>
                 </div>
-                <div className={`${styles.border} pl-6`}>
+                <div className={`${styles.border} pl-6 max-xl:pl-0`}>
                     <h3 className='text-[#fff] mt-4 text-xl'>Quick Links</h3>
                     <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-2 mt-6'>
                         <Link href="/">About us</Link>
@@ -24,7 +24,7 @@ const Footer = () => {
                         <Link href="/">Contact</Link>
                     </div>
                 </div>
-                <div className='pl-6'>
+                <div className='pl-6 max-xl:pl-0'>
                     <h3 className='text-[#fff] mt-4 text-xl'>Contact Us</h3>
                     <div className='flex mt-6'>
                         <Image src="/../home/facebook.png" width={30} height={60} className='mr-3' />

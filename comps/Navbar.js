@@ -201,15 +201,15 @@ function Navbar() {
                             >
                                 {language == "ar" ? "EN" : "AR"}
                             </Button> */}
-                                <div className='flex items-center'>
-                                    <div>
+                                {/* <div className='flex items-center ml-2'>
+                                    <div className={styles.bg_icon}>
                                         <PhoneFilled />
                                     </div>
-                                    <div>
+                                    <div className='ml-2'>
                                         <p>Call Us</p>
                                         <p>+0123 456 7894</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </Menu>
                         </Box>
                         <Typography

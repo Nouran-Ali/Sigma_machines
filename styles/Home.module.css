@@ -211,32 +211,42 @@
     height: 280px;
 }
 
-.card_icon{
+.card_icon {
     color: white;
     margin-left: auto;
     margin-right: auto;
 }
 
-.title_services{
+.title_services {
     color: #1c1c1c;
 }
 
-.card_services_2{
+.card_services_2 {
     background-color: #7053d921;
     border-radius: 95% 22% 55% 68% / 58% 92% 31% 56%;
 }
 
-.card_services_3{
+.card_services_3 {
     background-color: #f4ffff;
     border-radius: 44% 40% 46% 41% / 48% 53% 46% 26%;
 }
 
 /* experience */
-.bg_experience{
+.bg_experience {
     background-image: url('../public/home/bg_experience.jpg');
     width: 100%;
     height: 350px;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+}
+
+@media (max-width: 780px) {
+    .btn_more {
+        border-color: #4526b1;
+        color: white;
+        background: linear-gradient(135deg, #4526b1 0%, #5435be 45%, #7153d9 66%);
+        border-radius: 27px;
+        padding: 20px 30px;
+    }
 }

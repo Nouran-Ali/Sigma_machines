@@ -6,7 +6,7 @@ const WhatWeOffer = () => {
     return (
         <div className='px-24 max-xl:px-10 mt-24 mb-24'>
             <h1 className='text-center text-3xl text-[#1c1c1c] font-semibold'>WHAT WE OFFER</h1>
-            <div className='grid grid-cols-4 max-xl:grid-cols-2 gap-4 mt-12'>
+            <div className='grid grid-cols-4 max-xl:grid-cols-1 gap-4 mt-12'>
                 <Link href="/" className='flex items-center'>
                     <div className='bg-[#f2f5fb] p-6 rounded-full mr-5'>
                         <Image src="/../home/laser-cutting-machine.png" width={50} height={90} />

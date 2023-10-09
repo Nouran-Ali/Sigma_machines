@@ -20,7 +20,7 @@ const Product = () => {
 
     return (
         <>
-            <div className={styles.bg_products}>
+            <div className={`${styles.bg_products} mobile_d_none`}>
                 <p className='text-center text-3xl text-white font-semibold pt-40'>Sigma Machines Products</p>
                 <p className='text-center text-lg text-[#a9a9a9] mt-3'>HIGH SPEED, HIGH ACCURACY, HIGH EFFICIENCY</p>
             </div>

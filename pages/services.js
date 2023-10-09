@@ -34,11 +34,11 @@ const items = [
 const Services = () => {
   return (
     <>
-      <div className={styles.bg_services}>
+      <div className={`${styles.bg_services} mobile_d_none`}>
         <p className='text-center text-3xl text-white font-semibold pt-40'>Sigma Machines Services</p>
       </div>
       <div className='px-24 max-xl:px-10'>
-        <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-6 mt-20 mb-20'>
+        <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-6 mt-20 max-xl:mt-10 mb-20'>
           <div>
             <p className='text-[#7153d9] text-lg tracking-widest uppercase font-medium'>Services</p>
             <h1 className='text-[#1c1c1c] mt-4 text-4xl font-bold'>We Offer a Wide Variety of Technical Services</h1>
