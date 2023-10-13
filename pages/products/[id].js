@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import styles from "../../styles/Product.module.css";
@@ -7,6 +7,35 @@ import { CaretRightOutlined, MailOutlined } from '@ant-design/icons';
 import Product_comp from '@/comps/Product_comp';
 
 const Product = () => {
+
+    const [imageWidth, setImageWidth] = useState(750);
+    const [imageHight, setImageHight] = useState(500);
+
+    const [imageWidthTwo, setImageWidthTwo] = useState(1150);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 1280px)');
+
+        function handleMediaChange(event) {
+            if (event.matches) {
+                setImageWidth(400);
+                setImageHight(300)
+
+                setImageWidthTwo(400);
+            } else {
+                setImageWidth(750);
+                setImageHight(500)
+
+                setImageWidthTwo(1150);
+            }
+        }
+
+        mediaQuery.addListener(handleMediaChange);
+
+        return () => {
+            mediaQuery.removeListener(handleMediaChange);
+        };
+    }, []);
 
     const router = useRouter();
 
@@ -28,7 +57,7 @@ const Product = () => {
             <div className='px-24 max-xl:px-10'>
                 <div className='grid grid-cols-3 max-xl:grid-cols-1 gap-1 mt-7 mb-7'>
                     <div className='col-span-2'>
-                        <Image src="/../products/6.png" width={750} height={500} className='rounded-lg ' />
+                        <Image src="/../products/6.png" width={imageWidth} height={imageHight} className='rounded-lg ' />
                     </div>
                     <div>
                         <Image src="/../products/7.png" width={400} height={300} className='rounded-lg ' />
@@ -223,7 +252,7 @@ const Product = () => {
                 <p className='mt-5 text-center'>Widely used in advertising, high pressure / low voltage electrical cabinet production, textile machinery accessories, kitchen appliances, cars, machinery, elevators, electrical accessories, spring coil pieces, metro line parts and other industries. </p>
                 <div className='grid grid-cols-3 max-xl:grid-cols-2 gap-4 mt-9'>
                     <div className='mx-auto'>
-                        <Image src="/../products/15.jpg" width={1150} height={500} className='rounded-lg mx-auto' />
+                        <Image src="/../products/15.jpg" width={imageWidthTwo} height={imageHight} className='rounded-lg mx-auto' />
                     </div>
                 </div>
             </div>

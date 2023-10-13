@@ -16,7 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 import styles from "../styles/navbar.module.css";
 import Link from 'next/link';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import i18next from 'i18next';
 import { Select } from 'antd';
 import { PhoneFilled } from "@ant-design/icons";
@@ -81,7 +81,6 @@ function Navbar() {
     const { pathname } = router;
 
     const [t, i18n] = useTranslation();
-    // const { language, changeLanguage } = i18n;
     const { language } = i18n;
 
     const handleScroll = () => {
@@ -110,6 +109,23 @@ function Navbar() {
         }
     }
 
+    const changeLanguageButton = (language) => {
+        i18next.changeLanguage(language, (err, t) => {
+            if (err) return console.log('something went wrong loading', err);
+        });
+
+        localStorage.setItem('selectedLanguage', language);
+    };
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('selectedLanguage');
+        if (storedLanguage) {
+            changeLanguageButton(storedLanguage);
+        } else {
+            changeLanguageButton(navigator.language);
+        }
+    }, []);
+
     return (
         <>
 
@@ -129,7 +145,7 @@ function Navbar() {
                             sx={
                                 language == "ar" ?
                                     {
-                                        mr: 10,
+                                        mr: 15,
                                         ml: 9,
                                         display: { xs: 'none', md: 'flex' },
                                         fontFamily: 'monospace',
@@ -140,7 +156,7 @@ function Navbar() {
                                     }
                                     :
                                     {
-                                        mr: 15,
+                                        mr: 5,
                                         ml: 9,
                                         display: { xs: 'none', md: 'flex' },
                                         fontFamily: 'monospace',
@@ -194,13 +210,13 @@ function Navbar() {
                                         </Link>
                                     </MenuItem>
                                 ))}
-                                {/* <Button
-                                onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
-                                style={{ color: "#304644", fontWeight: "600", marginLeft: "44px" }}
-                                className='ml-9'
-                            >
-                                {language == "ar" ? "EN" : "AR"}
-                            </Button> */}
+                                <Button
+                                    onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
+                                    style={{ color: "#304644", backgroundColor: 'transparent', fontWeight: "600", marginLeft: "44px" }}
+                                    className='ml-9'
+                                >
+                                    {language == "ar" ? "EN" : "AR"}
+                                </Button>
                                 {/* <div className='flex items-center ml-2'>
                                     <div className={styles.bg_icon}>
                                         <PhoneFilled />
@@ -242,12 +258,12 @@ function Navbar() {
                                     {i18n.language == "ar" ? title_ar : title}
                                 </Link>
                             ))}
-                            {/* <Button
-                            onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
-                            style={{ color: "#304644", backgroundColor: "#f1f2f3", fontWeight: "600" }}
-                        >
-                            {language == "ar" ? "EN" : "AR"}
-                        </Button> */}
+                            <Button
+                                onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
+                                style={{ color: "#304644", backgroundColor: "transparent", fontWeight: "600", marginRight: "10px" }}
+                            >
+                                {language == "ar" ? "EN" : "AR"}
+                            </Button>
                             <div className='flex items-center'>
                                 <div className={styles.bg_icon}>
                                     <PhoneFilled />

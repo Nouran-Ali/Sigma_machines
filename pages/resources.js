@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "../styles/Resources.module.css";
 import { useState } from 'react';
 import { Radio, Space, Tabs } from 'antd';
@@ -38,13 +38,29 @@ const Resources = () => {
   const [tabPositionAr, setTabPositionAr] = useState('right');
   const [tabPositionTop, setTabPositionTop] = useState('top');
 
-  const mediaQuery = window.matchMedia('(max-width: 1280px)');
-
   const changeTabPosition = (e) => {
     setTabPosition(e.target.value);
     setTabPositionTop(e.target.value);
     setTabPositionAr(e.target.value);
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1280px)');
+
+    function handleMediaChange(event) {
+      if (event.matches) {
+        setTabPosition("top")
+      } else {
+        setTabPosition("left")
+      }
+    }
+
+    mediaQuery.addListener(handleMediaChange);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaChange);
+    };
+  }, []);
 
   return (
     <>
@@ -55,8 +71,7 @@ const Resources = () => {
 
       <div className='px-24 max-xl:px-10 mt-12 mb-12'>
         <Tabs
-          tabPosition={
-            mediaQuery.matches ? tabPositionTop : tabPosition
+          tabPosition={tabPosition
             // language == "ar" ?
             //   mediaQuery.matches ? tabPositionTop : tabPositionAr
             //   : 

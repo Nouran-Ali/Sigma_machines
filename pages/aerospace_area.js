@@ -13,7 +13,7 @@ const contentStyle = {
 const Aerospace_area = () => {
     return (
         <div className='px-24 max-xl:px-10 mt-20 max-xl:mt-10 mb-24'>
-            <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-4'>
+            <div className='grid grid-cols-2 max-xl:grid-cols-1 gap-4 max-xl:flex max-xl:flex-wrap-reverse'>
                 <div className={styles.bg}>
                     <Carousel autoplay className='text-center'>
                         <div>
@@ -82,7 +82,7 @@ const Aerospace_area = () => {
                         </div>
                     </Carousel>
                 </div>
-                <div className='text-lg text-[#677289] max-xl:mt-24'>
+                <div className='text-lg text-[#677289]'>
                     <h3 className='text-3xl text-[#212529]'>Aerospace Area</h3>
                     <p className='mt-4'>Laser processing technology in the application of aero-engine manufacturing, laser cutting accounted for more than 70% of the total laser processing output, which is a major laser technology.</p>
                     <p className='mt-4'>Laser cutting processing technology is a key manufacturing technology that promotes the development of high-speed, lightweight, long-life, short-cycle, low-cost, and other high-speed, high-speed, light-weight tools that are represented by aviation and space flight.</p>
