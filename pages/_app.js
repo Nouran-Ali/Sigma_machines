@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getCookie, setCookie } from "cookies-next";
 import { i18n } from "../comps/i18n"
+
 export default function App({ Component, pageProps }) {
 
   const [t, i18n] = useTranslation();
