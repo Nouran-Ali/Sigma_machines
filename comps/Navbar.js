@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
-import styles from "../styles/navbar.module.css";
+import styles from "../styles/Navbar.module.css";
 import Link from 'next/link';
 import { useTranslation } from "react-i18next";
 import { getCookie, setCookie } from "cookies-next";
