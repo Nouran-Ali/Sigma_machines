@@ -16,8 +16,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 import styles from "../styles/navbar.module.css";
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next'
-import i18next from 'i18next';
+import { useTranslation } from "react-i18next";
+import { getCookie, setCookie } from "cookies-next";
 import { Select } from 'antd';
 import { PhoneFilled } from "@ant-design/icons";
 
@@ -81,7 +81,7 @@ function Navbar() {
     const { pathname } = router;
 
     const [t, i18n] = useTranslation();
-    const { language } = i18n;
+    const { language , changeLanguage } = i18n;
 
     const handleScroll = () => {
         if (window.scrollY > 20) {
@@ -109,22 +109,15 @@ function Navbar() {
         }
     }
 
-    const changeLanguageButton = (language) => {
-        i18next.changeLanguage(language, (err, t) => {
-            if (err) return console.log('something went wrong loading', err);
-        });
-
-        localStorage.setItem('selectedLanguage', language);
-    };
-
-    useEffect(() => {
-        const storedLanguage = localStorage.getItem('selectedLanguage');
-        if (storedLanguage) {
-            changeLanguageButton(storedLanguage);
+    const toggleLanguage = () => {
+        if (language == "en") {
+            changeLanguage("ar");
+            setCookie('language', "ar");
         } else {
-            changeLanguageButton(navigator.language);
+            changeLanguage("en");
+            setCookie('language', "en");
         }
-    }, []);
+    };
 
     return (
         <>
@@ -211,7 +204,7 @@ function Navbar() {
                                     </MenuItem>
                                 ))}
                                 <Button
-                                    onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
+                                    onClick={toggleLanguage}
                                     style={{ color: "#304644", backgroundColor: 'transparent', fontWeight: "600", marginLeft: "44px" }}
                                     className='ml-9'
                                 >
@@ -259,7 +252,7 @@ function Navbar() {
                                 </Link>
                             ))}
                             <Button
-                                onClick={() => changeLanguageButton(language == "ar" ? "en" : "ar")}
+                                onClick={toggleLanguage}
                                 style={{ color: "#304644", backgroundColor: "transparent", fontWeight: "600", marginRight: "10px" }}
                             >
                                 {language == "ar" ? "EN" : "AR"}

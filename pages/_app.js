@@ -3,9 +3,21 @@ import Head from "next/head";
 import Script from "next/script";
 import Layout from "../comps/Layout";
 import Link from 'next/link';
-
-
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getCookie, setCookie } from "cookies-next";
+import { i18n } from "../comps/i18n"
 export default function App({ Component, pageProps }) {
+
+  const [t, i18n] = useTranslation();
+  const { language } = i18n;
+  const lang = getCookie("language") || "en";
+
+  useEffect(() => {
+    setCookie("language", lang);
+    i18n.changeLanguage(lang);
+  }, [i18n, lang]);
+
   return (
     <>
       <Head>
