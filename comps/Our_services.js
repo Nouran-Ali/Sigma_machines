@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "../styles/Home.module.css";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Our_services = () => {
     return (
@@ -15,7 +16,7 @@ const Our_services = () => {
                     <div className={styles.card_icon}>
                         <Image src="/../home/sell.png" width={50} height={50} className='mx-auto' />
                     </div>
-                    <h3 className={`${styles.title_services} text-xl mt-5 mb-5`}>Selling all types of laser machines</h3>
+                    <h3 className={`${styles.title_services} text-xl mt-5 mb-5`}>Sell and maintenance of the production lines</h3>
                     <p className='text-[#54545f]'>Design and propose product improvements through periodical and accurate testing.</p>
                 </div>
 
@@ -32,7 +33,7 @@ const Our_services = () => {
                         <Image src="/../home/spare_parts.png" width={50} height={50} className='mx-auto' />
                     </div>
                     <h3 className={`${styles.title_services} text-xl mt-5 mb-5`}>Spare parts for the machines</h3>
-                    <p className='text-[#54545f]'>Design and propose product improvements through periodical and accurate testing.</p>
+                    <p className='text-[#54545f]'>Design and propose product improvements through periodical and accurate testing. <Link href="/spare_parts" className='text-[#6eedd7]'>More</Link></p>
                 </div>
             </div>
 

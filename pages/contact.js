@@ -1,12 +1,21 @@
-import { Input } from 'antd'
+import { Input, Button } from 'antd';
 const { TextArea } = Input;
-import Image from 'next/image'
+import Image from 'next/image';
 import styles from "../styles/contact.module.css";
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const Contact = () => {
+    const { register, handleSubmit, reset , formState: { errors } } = useForm();
 
-    const onChange = (e) => {
-        console.log('Change:', e.target.value);
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post('/api/sendEmail', data);
+            console.log(response.data);
+            reset(); // Clear the form on success
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -39,41 +48,72 @@ const Contact = () => {
                                 <div className={`${styles.half_circle} mobile_d_none`}></div>
                                 <div className='bg-white p-8 rounded-3xl ml-auto relative z-0'>
                                     <h3 className='text-[#1d214e] text-2xl font-semibold'>Write <span className='text-[#4526b1]'> A Message</span></h3>
-                                    <div className='mt-8 text-lg'>
+                                    <form className='mt-8 text-lg' onSubmit={handleSubmit(onSubmit)}>
                                         <p className='text-[#1d214e]'>Full name</p>
-                                        <Input placeholder="John" size="large" className='rounded-full bg-[#faf9fe] pl-4' />
+                                        <Input
+                                            placeholder="John"
+                                            size="large"
+                                            className='rounded-full bg-[#faf9fe] pl-4'
+                                            name="name"
+                                            {...register("name")}
+                                        />
+                                        {errors.name?.message && <p>Name is required</p>}
 
                                         <p className='mt-4 text-[#1d214e]'>Email*</p>
-                                        <Input placeholder="Enter your email" size="large" className='rounded-full bg-[#faf9fe] pl-4' />
+                                        <Input
+                                            placeholder="Enter your email"
+                                            size="large"
+                                            className='rounded-full bg-[#faf9fe] pl-4'
+                                            type="email"
+                                            name="email"
+                                            {...register("email")}
+                                        //   ref={register({ required: true })}
+                                        />
+                                        {errors.email?.message && <p>Email is required</p>}
 
                                         <p className='mt-4 text-[#1d214e]'>Phone</p>
-                                        <Input placeholder="+20" size="large" className='rounded-full bg-[#faf9fe] pl-4' />
+                                        <Input
+                                            placeholder="+20"
+                                            size="large"
+                                            className='rounded-full bg-[#faf9fe] pl-4'
+                                            name="phone"
+                                            {...register("phone")}
+                                        //   ref={register({ required: true })}
+                                        />
+                                        {errors.phone?.message && <p>Phone is required</p>}
 
                                         <p className='mt-4 text-[#1d214e]'>Message</p>
-                                        <TextArea showCount maxLength={100} onChange={onChange} placeholder='Write your message here' className='bg-[#faf9fe] pl-4' />
+                                        <TextArea
+                                            showCount
+                                            maxLength={100}
+                                            // onChange={onChange}
+                                            placeholder='Write your message here'
+                                            className='bg-[#faf9fe] pl-4'
+                                            name="message"
+                                            {...register("message")}
+                                        //   ref={register({ required: true })}
+                                        />
+                                        {errors.message && <p>Message is required</p>}
 
-                                        <button className={styles.btn_submit}>Submit Now</button>
-                                    </div>
+                                        <Button
+                                            className={styles.btn_submit}
+                                            type="primary"
+                                            htmlType="submit"
+                                        >
+                                            Submit Now
+                                        </Button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            {/* <dotlottie-player
-                                src="https://lottie.host/a015e608-4c14-4991-aa34-f3deec518440/eINotyliIX.json"
-                                background="transparent"
-                                speed="1"
-                                style={{width: "300px", height: "300px"}}
-                                loop
-                                autoplay
-                            >
-                            </dotlottie-player> */}
-                            <Image src="/../contact/1.png" width={550} height={250} className='mt-12 ml-7 mobile_d_none'/>
+                            <Image src="/../contact/1.png" width={550} height={250} className='mt-12 ml-7 mobile_d_none' />
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

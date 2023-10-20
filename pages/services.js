@@ -50,7 +50,7 @@ const Services = () => {
               <div className='bg-[#7153d938] rounded-full ml-auto p-5 px-7 mb-4 font-bold inline-block'>
                 <p>1</p>
               </div>
-              <h3 className='text-[#1c1c1c] mt-3 text-xl font-bold'>Selling all types of laser machines</h3>
+              <h3 className='text-[#1c1c1c] mt-3 text-xl font-bold'>Sell and maintenance of the production lines</h3>
               <p className='text-[#54545f] text-lg mt-4'>Design and propose product improvements through periodical and accurate testing</p>
             </div>
             <div>

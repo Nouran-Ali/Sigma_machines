@@ -2,8 +2,15 @@ import React from 'react'
 import styles from "../styles/Home.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { Carousel } from 'antd';
 
 const Main = () => {
+
+    const onChange = (currentSlide) => {
+        console.log(currentSlide);
+      };
+
     return (
         <>
             <div>
@@ -26,7 +33,14 @@ const Main = () => {
                         </div>
                         <div>
                             <div className={styles.right_circle}></div>
-                            <Image src="/../home/4.png" className={` ${styles.image} mobile_d_none`} width={600} height={550} />
+                            <Carousel afterChange={onChange} dots={false} arrows={false}>
+                                <div>
+                                    <Link href="products/1"><Image src="/../home/4.png" alt={`Image`} className={` ${styles.image} mobile_d_none`} width={600} height={550} /></Link>
+                                </div>
+                                <div>
+                                    <Link href="products/1"><Image src="/../home/3.png" alt={`Image`} className={` ${styles.image} mobile_d_none`} width={600} height={550} /></Link>
+                                </div>
+                            </Carousel>
                             <div className={styles.right_dots}>
                                 <Image src="/../home/menu.png" width={50} height={50} />
                                 <Image src="/../home/menu.png" width={50} height={50} />

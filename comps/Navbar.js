@@ -24,7 +24,7 @@ import { PhoneFilled } from "@ant-design/icons";
 const pages = [
     {
         title: 'Home',
-        title_ar: 'الرئيسيه',
+        title_ar: 'الرئيسية',
         href: '/',
     },
     {
@@ -41,11 +41,77 @@ const pages = [
         title: 'Products',
         title_ar: 'المنتجات',
         href: '/products',
+        sublinks: [
+            {
+                title: 'Fiber Laser Cutting Machine',
+                title_ar: 'منتج 1',
+                href: '/product1',
+                sublinkstwo: [
+                    {
+                        title: 'Sheet Metal Laser Cutting Machine',
+                        title_ar: 'منتج 1',
+                        href: '/product1',
+                    },
+                    {
+                        title: 'Tube Metal Laser Cutting Machine',
+                        title_ar: 'منتج 1',
+                        href: '/product1',
+                    },
+                    {
+                        title: 'Sheet & Tube Laser Cutting Machine',
+                        title_ar: 'منتج 1',
+                        href: '/product1',
+                    },
+                ]
+            },
+            {
+                title: 'CO2 Laser',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+            {
+                title: 'CNC Router',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+            {
+                title: 'Bending',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+            {
+                title: 'Welding',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+            {
+                title: 'Marking Laser',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+            {
+                title: 'CNC Plasm',
+                title_ar: 'منتج 2',
+                href: '/product2',
+            },
+        ]
     },
     {
         title: 'Resources',
         title_ar: 'المصادر',
         href: '/resources',
+        // sublinks: [
+        //     {
+        //         title: 'Programming instruction',
+        //         title_ar: 'المصادر',
+        //         href: '/resources',
+        //     },
+        //     {
+        //         title: 'Catalog',
+        //         title_ar: 'المصادر',
+        //         href: '/resources',
+        //     },
+        // ]
     },
     {
         title: 'Contact',
@@ -55,33 +121,42 @@ const pages = [
 ];
 
 function Navbar() {
-
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [productsMenuAnchorEl, setProductsMenuAnchorEl] = React.useState(null);
+    const [sublinksAnchorEl, setSublinksAnchorEl] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
+    const handleOpenProductsMenu = (event, sublinks) => {
+        setProductsMenuAnchorEl(sublinks ? event.currentTarget : null);
     };
 
-    const [active, setActive] = useState()
+    const handleCloseProductsMenu = () => {
+        setProductsMenuAnchorEl(null);
+    };
+
+    const handleOpenSublinks = (event, sublinks) => {
+        setSublinksAnchorEl(sublinks ? event.currentTarget : null);
+    };
+
+    const handleCloseSublinks = () => {
+        setSublinksAnchorEl(null);
+    };
+
+    const [active, setActive] = useState();
     const [scrolling, setScrolling] = useState(false);
     const router = useRouter();
 
     const { pathname } = router;
 
     const [t, i18n] = useTranslation();
-    const { language , changeLanguage } = i18n;
+    const { language, changeLanguage } = i18n;
 
     const handleScroll = () => {
         if (window.scrollY > 20) {
@@ -107,7 +182,7 @@ function Navbar() {
         } else {
             return false;
         }
-    }
+    };
 
     const toggleLanguage = () => {
         if (language == "en") {
@@ -121,7 +196,6 @@ function Navbar() {
 
     return (
         <>
-
             <AppBar position="sticky" sx={{
                 backgroundColor: scrolling ? '#ffffff' : '#e9edf4',
                 transition: 'background-color 0.3s ease-in-out',
@@ -163,7 +237,6 @@ function Navbar() {
                         >
                             <img src='../next.svg' width="75px" />
                         </Typography>
-
                         <Box sx={{
                             flexGrow: 1, display: { xs: 'flex', md: 'none' },
                             alignItems: 'center', textAlign: 'center'
@@ -196,12 +269,38 @@ function Navbar() {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map(({ title, title_ar, href }, index) => (
-                                    <MenuItem key={index} onClick={handleCloseNavMenu}>
-                                        <Link href={href} className={`${styles.link} ${handleActiveLink(href) ? styles.active : ' '} flex items-center font-bold`}>
-                                            {i18n.language == "ar" ? title_ar : title}
-                                        </Link>
-                                    </MenuItem>
+                                {pages.map(({ title, title_ar, href, sublinks, sublinkstwo }, index) => (
+                                    <div key={index}>
+                                        {sublinks ? (
+                                            <>
+                                                <Button
+                                                    aria-controls={`menu-products-${index}`}
+                                                    aria-haspopup="true"
+                                                    onClick={(event) => handleOpenProductsMenu(event, sublinks)}
+                                                >
+                                                    {i18n.language === "ar" ? title_ar : title}
+                                                </Button>
+                                                <Menu
+                                                    id={`menu-products-${index}`}
+                                                    anchorEl={productsMenuAnchorEl}
+                                                    open={Boolean(productsMenuAnchorEl)}
+                                                    onClose={handleCloseProductsMenu}
+                                                >
+                                                    {sublinks.map((sublink, subIndex) => (
+                                                        <MenuItem key={subIndex} onClick={handleCloseProductsMenu}>
+                                                            <Link href={sublink.href} className={styles.link}>
+                                                                {i18n.language === "ar" ? sublink.title_ar : sublink.title}
+                                                            </Link>
+                                                        </MenuItem>
+                                                    ))}
+                                                </Menu>
+                                            </>
+                                        ) : (
+                                            <Link href={href} className={`${styles.link} ${handleActiveLink(href) ? styles.active : ''} flex items-center`}>
+                                                {i18n.language === "ar" ? title_ar : title}
+                                            </Link>
+                                        )}
+                                    </div>
                                 ))}
                                 <Button
                                     onClick={toggleLanguage}
@@ -210,15 +309,6 @@ function Navbar() {
                                 >
                                     {language == "ar" ? "EN" : "AR"}
                                 </Button>
-                                {/* <div className='flex items-center ml-2'>
-                                    <div className={styles.bg_icon}>
-                                        <PhoneFilled />
-                                    </div>
-                                    <div className='ml-2'>
-                                        <p>Call Us</p>
-                                        <p>+0123 456 7894</p>
-                                    </div>
-                                </div> */}
                             </Menu>
                         </Box>
                         <Typography
@@ -227,8 +317,6 @@ function Navbar() {
                             component="a"
                             href="/"
                             sx={{
-                                // mr: 2,
-                                // ml: "auto",
                                 display: { xs: 'flex', md: 'none' },
                                 flexGrow: 1,
                                 fontFamily: 'monospace',
@@ -245,11 +333,81 @@ function Navbar() {
                             flexGrow: 1,
                             display: { xs: 'none', md: 'flex' },
                             textAlign: 'center',
+                            alignItems: "center"
                         }}>
-                            {pages.map(({ title, title_ar, href }, index) => (
-                                <Link key={index} href={href} className={`${styles.link} ${handleActiveLink(href) ? styles.active : ' '} flex items-center`} style={{ align: "center" }}>
-                                    {i18n.language == "ar" ? title_ar : title}
-                                </Link>
+                            {pages.map(({ title, title_ar, href, sublinks }, index) => (
+                                <div key={index}>
+                                    {sublinks ? (
+                                        <>
+                                            <Button
+                                                aria-controls={`menu-products-${index}`}
+                                                aria-haspopup="true"
+                                                onClick={(event) => handleOpenProductsMenu(event, sublinks)}
+                                                className={`${styles.link} ${styles.link_menu} ${handleActiveLink(href) ? styles.active : ''} flex items-center`}
+                                            >
+                                                {i18n.language === "ar" ? title_ar : title}
+                                            </Button>
+                                            <Menu
+                                                id={`menu-products-${index}`}
+                                                anchorEl={productsMenuAnchorEl}
+                                                open={Boolean(productsMenuAnchorEl)}
+                                                onClose={handleCloseProductsMenu}
+                                            >
+                                                {sublinks.map((sublink, subIndex) => (
+                                                    <MenuItem key={subIndex} onClick={handleCloseProductsMenu}>
+                                                        {/* <Link href={sublink.href} className={styles.link}>
+                                                            {i18n.language === "ar" ? sublink.title_ar : sublink.title}
+                                                        </Link> */}
+
+                                                        {
+                                                            sublink.sublinkstwo?.length > 0 ?
+
+                                                                sublink.sublinkstwo.map(({ title, title_ar, href, sublinks }, index) => (
+                                                                    <div key={index}>
+                                                                        {sublinks ? (
+                                                                            <>
+                                                                                <Button
+                                                                                    aria-controls={`menu-products-${index}`}
+                                                                                    aria-haspopup="true"
+                                                                                    onClick={(event) => handleOpenProductsMenu(event, sublinks.sublinkstwo)}
+                                                                                    className={`${styles.link} ${styles.link_menu} ${handleActiveLink(href) ? styles.active : ''} flex items-center`}
+                                                                                >
+                                                                                    {i18n.language === "ar" ? sublink.title_ar : sublink.title}
+                                                                                </Button>
+                                                                                <Menu
+                                                                                    id={`menu-products-${index}`}
+                                                                                    anchorEl={productsMenuAnchorEl}
+                                                                                    open={Boolean(productsMenuAnchorEl)}
+                                                                                    onClose={handleCloseProductsMenu}
+                                                                                >
+                                                                                    {sublinks.map((sublink, subIndex) => (
+                                                                                        <MenuItem key={subIndex} onClick={handleCloseProductsMenu}>
+                                                                                            <Link href={sublink.href} className={styles.link}>
+                                                                                                {i18n.language === "ar" ? sublink.title_ar : sublink.title}
+                                                                                            </Link>
+                                                                                        </MenuItem>
+                                                                                    ))}
+                                                                                </Menu>
+                                                                            </>
+                                                                        ) : (
+                                                                            <Link href={href} className={`${styles.link} ${handleActiveLink(href) ? styles.active : ''} flex items-center`}>
+                                                                                {i18n.language === "ar" ? title_ar : title}
+                                                                            </Link>
+                                                                        )}
+                                                                    </div>
+                                                                ))
+                                                                : null
+                                                        }
+                                                    </MenuItem>
+                                                ))}
+                                            </Menu>
+                                        </>
+                                    ) : (
+                                        <Link href={href} className={`${styles.link} ${handleActiveLink(href) ? styles.active : ''} flex items-center`}>
+                                            {i18n.language === "ar" ? title_ar : title}
+                                        </Link>
+                                    )}
+                                </div>
                             ))}
                             <Button
                                 onClick={toggleLanguage}
@@ -269,8 +427,7 @@ function Navbar() {
                         </Box>
                     </Toolbar>
                 </Container>
-            </AppBar >
-
+            </AppBar>
         </>
     );
 }

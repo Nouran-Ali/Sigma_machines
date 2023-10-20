@@ -79,6 +79,10 @@ body{
   z-index: 2;
 }
 
+.css-dev-only-do-not-override-1vr7spz{
+  border-radius: 17px !important;
+}
+
 @media (max-width: 780px) {
   .mobile_d_none{
     display: none;
