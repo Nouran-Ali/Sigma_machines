@@ -562,7 +562,7 @@ function Navbar() {
                                 </Link>
                                 <div className={styles.dropdown_content}>
                                     <Link href="/programming_instruction">Programming instruction</Link>
-                                    <Link href="#">Catalog</Link>
+                                    <Link href="/catalog">Catalog</Link>
                                 </div>
                             </div>
                             <Link href="/contact" className={`${styles.link} ${handleActiveLink("/contact") ? styles.active : ''} flex items-center`}>
